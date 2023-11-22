@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artist index{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl mb-4">Artist index</h1>
+
+        <table class="table-auto w-full mb-4">
+            <thead>
+                <tr class="bg-green-500 text-white">
+                    <th class="px-4 py-2">Id</th>
+                    <th class="px-4 py-2">Name</th>
+                    <th class="px-4 py-2">Thumbnail</th>
+                    <th class="px-4 py-2">Biography</th>
+                    <th class="px-4 py-2">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for artist in artists %}
+                <tr class="text-center">
+                    <td class="border px-4 py-2">{{ artist.id }}</td>
+                    <td class="border px-4 py-2">{{ artist.name }}</td>
+                    <td class="border px-4 py-2">
+                        <img src="{{ artist.thumbnail }}" alt="{{ artist.name }}">
+                    </td>
+                    <td class="border px-4 py-2">{{ artist.biography }}</td>
+                    <td class="border px-4 py-2">
+                        <a href="{{ path('app_artist_show', {'id': artist.id}) }}" class="text-green-500 hover:text-green-800">show</a>
+                        <a href="{{ path('app_artist_edit', {'id': artist.id}) }}" class="text-green-500 hover:text-green-800">edit</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6" class="text-center py-4">No records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_artist_new') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Create new</a>
+    </div>
+{% endblock %}

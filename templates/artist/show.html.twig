@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Artist{% endblock %}
+
+{% block body %}
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl mb-4">Artist</h1>
+
+        <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
+            <div class="px-4 py-5 sm:px-6">
+                <h2 class="text-lg leading-6 font-medium text-gray-900">{{ artist.name }}</h2>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">{{ artist.biography }}</p>
+            </div>
+            <div class="border-t border-gray-200">
+                <dl>
+                    <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                        <dt class="text-sm font-medium text-gray-500">Thumbnail</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                            <img src="{{ artist.thumbnail }}" alt="{{ artist.name }}">
+                        </dd>
+                    </div>
+                </dl>
+            </div>
+        </div>
+
+        <a href="{{ path('app_artist_index') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Back to list</a>
+        <a href="{{ path('app_artist_edit', {'id': artist.id}) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+
+        {{ include('artist/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

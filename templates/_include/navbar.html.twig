@@ -1,0 +1,15 @@
+<nav class="bg-green-500 p-4 text-white">
+    <span class="flex justify-center text-2xl font-bold"><i class="px-2 py-1 fa-solid fa-circle-play"></i>HarmoniSound</span>
+    <ul class="flex justify-between">
+        <div class="flex space-x-4">
+            <li><a href="{{ path('app_home') }}" class="hover:text-green-300 font-semibold">Accueil</a></li>
+            <li><a href="{{ path('app_artist_index') }}" class="hover:text-green-300 font-semibold">Artiste</a></li>
+            <li><a href="{{ path('app_album_index') }}" class="hover:text-green-300 font-semibold">Album</a></li>
+            <li><a href="{{ path('app_music_index') }}" class="hover:text-green-300 font-semibold">Musique</a></li>
+        </div>
+        <div class="flex space-x-4">
+            <li><a href="{{ path('app_register') }}" class="hover:text-green-300">Créer un compte</a></li>
+            <li><a href="{{ path('app_login') }}" class="hover:text-green-300">Se connecter</a></li>
+        </div>
+    </ul>
+</nav>
