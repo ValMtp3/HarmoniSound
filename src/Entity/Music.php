@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\MusicRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -19,7 +20,7 @@ class Music
     private ?string $title = null;
 
     #[ORM\Column]
-    private ?int $duration = null;
+    private ?DateTime $duration = null;
 
     #[ORM\ManyToMany(targetEntity: Artist::class, inversedBy: 'featurings')]
     private Collection $featuring;
@@ -55,12 +56,25 @@ class Music
         return $this;
     }
 
-    public function getDuration(): ?int
+    public function getDuration(): ?DateTime
     {
         return $this->duration;
     }
 
-    public function setDuration(int $duration): static
+    public function getDurationString(): string
+    {
+        if ($this->duration === null) {
+            return '';
+        }
+
+        if ($this->duration->format('H') === '00') {
+            return $this->duration->format('i:s');
+        }
+
+        return $this->duration->format('H:i:s');
+    }
+
+    public function setDuration(DateTime $duration): static
     {
         $this->duration = $duration;
 

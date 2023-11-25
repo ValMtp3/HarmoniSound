@@ -10,8 +10,7 @@
             <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
                 <div class="px-4 py-5 sm:px-6">
                     <h2 class="text-lg leading-6 font-medium text-gray-900">{{ music.title }}</h2>
-                    <p class="mt-1 max-w-2xl text-sm text-gray-500">Duration: {{ music.duration }}</p>
-                </div>
+                    <td class="border px-4 py-2">{{ music.durationString() }}</td>                </div>
                 <div class="border-t border-gray-200">
                     <dl>
                         <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
