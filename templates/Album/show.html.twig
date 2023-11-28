@@ -4,6 +4,10 @@
 
 {% block body %}
     <div class="container mx-auto px-4">
+        <div class="flex justify-content items-end">
+            <p class="font-bold text-lg px-2 m-2">{{ artist.name }}</p>
+            <img class="w-14 h-14 rounded-full mb-4 mt-2" src="{{ artist.thumbnail }}" alt="{{ album.title }}">
+        </div>
         <h1 class="text-4xl mb-4">Album</h1>
 
         <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
@@ -14,28 +18,28 @@
                 <dl>
                     <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Thumbnail</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 w-80 h-80">
                             <img src="{{ album.thumbnail }}" alt="{{ album.title }}">
                         </dd>
                     </div>
                     <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Release Date</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            {{ album.releasedate ? album.releasedate|date('Y-m-d') : '' }}
+                            {{ album.releasedate ? album.releasedate|date('d/m/Y') : '' }}
                         </dd>
                     </div>
                     <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt class="text-sm font-medium text-gray-500">Type</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                            {{ album.type }}
+                            {{ album.typeName }}
                         </dd>
                     </div>
                 </dl>
             </div>
         </div>
 
-        <a href="{{ path('app_album_index') }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Back to list</a>
-        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+        <a href="{{ path('app_album_index') }}" class="bg-[#F0C033] hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Back to list</a>
+        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="bg-[#F0C033] hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Edit</a>
 
         {{ include('Album/_delete_form.html.twig') }}
     </div>

@@ -43,10 +43,18 @@ class ArtistController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_artist_show', methods: ['GET'])]
-    public function show(Artist $artist): Response
+    public function show(Artist $artist)
     {
+        $albums = $artist->getAlbums();
+        $musics = [];
+        foreach ($albums as $album) {
+            $musics[] = $album->getMusic();
+        }
+
         return $this->render('artist/show.html.twig', [
             'artist' => $artist,
+            'albums' => $albums,
+            'musics' => $musics,
         ]);
     }
 

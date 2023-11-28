@@ -44,6 +44,20 @@ class Album
         $this->music = new ArrayCollection();
     }
 
+    public function getTypeName(): string
+    {
+        switch ($this->type) {
+            case self::Album:
+                return 'Album';
+            case self::EP:
+                return 'EP';
+            case self::SINGLE:
+                return 'Single';
+            default:
+                return 'Unknown';
+        }
+    }
+
     public function getId(): ?int
     {
         return $this->id;
