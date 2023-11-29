@@ -22,8 +22,8 @@
                         <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                             <dt class="text-sm font-medium text-gray-500">Actions</dt>
                             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <a href="{{ path('app_music_show', {'id': music.id}) }}" class="text-[#F0C033] hover:text-green-800">show</a>
-                                <a href="{{ path('app_music_edit', {'id': music.id}) }}" class="text-[#F0C033] hover:text-green-800">edit</a>
+                                <a href="{{ path('app_music_show', {'id': music.id}) }}" class="text-[#F0C033] hover:text-yellow-800">show</a>
+                                <a href="{{ path('app_music_edit', {'id': music.id}) }}" class="text-[#F0C033] hover:text-yellow-800">edit</a>
                             </dd>
                         </div>
                     </dl>
@@ -33,6 +33,6 @@
             <p>No records found</p>
         {% endif %}
 
-        <a href="{{ path('app_music_new') }}" class="bg-[#F0C033] hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Create new</a>
+        <a href="{{ path('app_music_new') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Create new</a>
     </div>
 {% endblock %}

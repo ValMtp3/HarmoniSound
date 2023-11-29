@@ -3,10 +3,10 @@
 {% block title %}Album{% endblock %}
 
 {% block body %}
-    <div class="container mx-auto px-4">
-        <div class="flex justify-content items-end">
-            <p class="font-bold text-lg px-2 m-2">{{ artist.name }}</p>
+    <div class="container mx-auto px-4 mt-4">
+        <div class="flex justify-content items-start">
             <img class="w-14 h-14 rounded-full mb-4 mt-2" src="{{ artist.thumbnail }}" alt="{{ album.title }}">
+            <p class="font-bold text-lg px-2 m-2">{{ artist.name }}</p>
         </div>
         <h1 class="text-4xl mb-4">Album</h1>
 
@@ -36,10 +36,19 @@
                     </div>
                 </dl>
             </div>
+            <h2 class="text-2xl my-4">Musics</h2>
+            {% for music in album.music %}
+                <div class="px-4 py-5 sm:px-6 flex justify-between {% if loop.index is odd %}bg-gray-100{% endif %}">
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 font-bold text-lg">{{ music.title }}</dd>
+                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ music.getDurationString() }}</dd>
+                </div>
+            {% else %}
+                <div class="text-center py-4">No music found for this album</div>
+            {% endfor %}
         </div>
 
-        <a href="{{ path('app_album_index') }}" class="bg-[#F0C033] hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Back to list</a>
-        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="bg-[#F0C033] hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+        <a href="{{ path('app_album_index') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Back to list</a>
+        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Edit</a>
 
         {{ include('Album/_delete_form.html.twig') }}
     </div>

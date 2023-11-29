@@ -11,9 +11,9 @@
             {{ form_row(form.duration, {'attr': {'class': 'border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm px-4 py-2'}}) }}
             {{ form_row(form.album, {'attr': {'class': 'border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm px-4 py-2'}}) }}
             {{ form_row(form.featuring, {'attr': {'class': 'border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm px-4 py-2'}}) }}
-            <button type="submit" class="bg-[#F0C033] hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Create</button>
+            <button type="submit" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Create</button>
         {{ form_end(form) }}
     </div>
 
-    <a href="{{ path('app_music_index') }}" class="text-[#F0C033] hover:text-green-800">back to list</a>
+    <a href="{{ path('app_music_index') }}" class="text-[#F0C033] hover:text-yellow-800">back to list</a>
 {% endblock %}

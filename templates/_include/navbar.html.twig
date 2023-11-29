@@ -2,14 +2,18 @@
     <span class="flex justify-center text-2xl font-bold"><i class="px-2 py-1 fa-solid fa-circle-play"></i>HarmoniSound</span>
     <ul class="flex justify-between">
         <div class="flex space-x-4">
-            <li><a href="{{ path('app_home') }}" class="hover:text-green-300 font-semibold">Accueil</a></li>
-            <li><a href="{{ path('app_artist_index') }}" class="hover:text-green-300 font-semibold">Artiste</a></li>
-            <li><a href="{{ path('app_album_index') }}" class="hover:text-green-300 font-semibold">Album</a></li>
-            <li><a href="{{ path('app_music_index') }}" class="hover:text-green-300 font-semibold">Musique</a></li>
+            <li><a href="{{ path('app_home') }}" class="hover:text-[#D8A948] font-semibold">Accueil</a></li>
+            <li><a href="{{ path('app_artist_index') }}" class="hover:text-[#D8A948] font-semibold">Artiste</a></li>
+            <li><a href="{{ path('app_album_index') }}" class="hover:text-[#D8A948] font-semibold">Album</a></li>
+            <li><a href="{{ path('app_music_index') }}" class="hover:text-[#D8A948] font-semibold">Musique</a></li>
         </div>
         <div class="flex space-x-4">
-            <li><a href="{{ path('app_register') }}" class="hover:text-green-300">Créer un compte</a></li>
-            <li><a href="{{ path('app_login') }}" class="hover:text-green-300">Se connecter</a></li>
+            {% if app.user %}
+                <li><a href="{{ path('app_logout') }}" class="hover:text-[#D8A948] font-semibold">Déconnexion</a></li>
+            {% else %}
+                <li><a href="{{ path('app_register') }}" class="hover:text-[#D8A948]">Créer un compte</a></li>
+                <li><a href="{{ path('app_login') }}" class="hover:text-[#D8A948]">Se connecter</a></li>
+            {% endif %}
         </div>
     </ul>
 </nav>

@@ -6,40 +6,43 @@
     <div class="container mx-auto px-4">
         <h1 class="text-4xl mb-4">Album index</h1>
 
-        <table class="table-auto w-full mb-4">
-            <thead>
-                <tr class="bg-[#F0C033] text-white">
-                    <th class="px-4 py-2">Id</th>
-                    <th class="px-4 py-2">Title</th>
-                    <th class="px-4 py-2">Release Date</th>
-                    <th class="px-4 py-2">Type</th>
-                    <th class="px-4 py-2">Thumbnail</th>
-                    <th class="px-4 py-2">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {% for album in albums %}
-                <tr class="text-center">
-                    <td class="border px-4 py-2">{{ album.id }}</td>
-                    <td class="border px-4 py-2">{{ album.title }}</td>
-                    <td class="border px-4 py-2">{{ album.releasedate ? album.releasedate|date('d/m/Y') : '' }}</td>
-                    <td class="border px-4 py-2">{{ album.typeName }}</td>
-                    <td class="border px-4 py-2 w-60 h-60">
-                        <img src="{{ album.thumbnail }}" alt="{{ album.title }}">
-                    </td>
-                    <td class="border px-4 py-2">
-                        <a href="{{ path('app_album_show', {'id': album.id}) }}" class="text-[#F0C033] hover:text-green-800">show</a>
-                        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="text-[#F0C033] hover:text-green-800">edit</a>
-                    </td>
-                </tr>
+                <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
+                    <div class="px-4 py-5 sm:px-6">
+                        <h2 class="text-lg leading-6 font-medium text-gray-900">{{ album.title }}</h2>
+                    </div>
+                    <div class="border-t border-gray-200">
+                        <dl>
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 w-60 h-60">
+                                    <img src="{{ album.thumbnail }}" alt="{{ album.title }}">
+                                </dd>
+                            </div>
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">Release Date</dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{ album.releasedate ? album.releasedate|date('d/m/Y') : '' }}
+                                </dd>
+                            </div>
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">Type</dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{ album.typeName }}
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="px-4 py-4 sm:px-6">
+                        <a href="{{ path('app_album_show', {'id': album.id}) }}" class="text-[#F0C033] hover:text-yellow-800">show</a>
+                        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="text-[#F0C033] hover:text-yellow-800">edit</a>
+                    </div>
+                </div>
             {% else %}
-                <tr>
-                    <td colspan="6" class="text-center py-4">No records found</td>
-                </tr>
+                <div class="text-center py-4">No records found</div>
             {% endfor %}
-            </tbody>
-        </table>
+        </div>
 
-        <a href="{{ path('app_album_new') }}" class="bg-[#F0C033] hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Create new</a>
+        <a href="{{ path('app_album_new') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Create new</a>
     </div>
 {% endblock %}

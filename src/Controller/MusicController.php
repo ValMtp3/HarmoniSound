@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Music;
 use App\Form\MusicType;
+use App\Repository\AlbumRepository;
 use App\Repository\MusicRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,9 +24,13 @@ class MusicController extends AbstractController
     }
 
     #[Route('/new', name: 'app_music_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, AlbumRepository $albumRepository): Response
     {
         $music = new Music();
+        $lastAlbum = $albumRepository->findOneBy([], ['id' => 'desc']);
+        if ($lastAlbum) {
+            $music->setAlbum($lastAlbum);
+        }
         $form = $this->createForm(MusicType::class, $music);
         $form->handleRequest($request);
 

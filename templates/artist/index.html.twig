@@ -3,41 +3,40 @@
 {% block title %}Artist index{% endblock %}
 
 {% block body %}
-    <div class="container mx-auto px-4 m-10">
-        <table class="table-auto w-full mb-4">
-            <thead>
-                <tr class="bg-[#F0C033] text-white">
-                    <th class="px-4 py-2">Id</th>
-                    <th class="px-4 py-2">Name</th>
-                    <th class="px-4 py-2">Thumbnail</th>
-                    <th class="px-4 py-2">Biography</th>
-                    <th class="px-4 py-2">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-            {% for artist in artists %}
-                <tr class="text-center">
-                    <td class="border px-4 py-2">{{ artist.id }}</td>
-                    <td class="border px-4 py-2">{{ artist.name }}</td>
-                    <td class="border px-4 py-2">
-                        <img src="{{ artist.thumbnail }}" alt="{{ artist.name }}">
-                    </td>
-                    <td class="border px-4 py-2">{{ artist.biography }}</td>
-                    <td class="border px-4 py-2">
-                        <div class="flex flex-col space-y-1 ">
-                            <a href="{{ path('app_artist_show', {'id': artist.id}) }}" class="text-[#F0C033] hover:text-green-800 border-2 border-current rounded-md p-1">Plus</a>
-                            <a href="{{ path('app_artist_edit', {'id': artist.id}) }}" class="text-[#F0C033] hover:text-green-800 border-2 border-current rounded-md p-1">Modifier</a>
-                        </div>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="6" class="text-center py-4">No records found</td>
-                </tr>
-            {% endfor %}
-            </tbody>
-        </table>
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl mb-4">Artist index</h1>
 
-        <a href="{{ path('app_artist_new') }}" class="bg-[#F0C033] hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Create new</a>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {% for artist in artists %}
+                <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
+                    <div class="px-4 py-5 sm:px-6">
+                        <h2 class="text-lg leading-6 font-medium text-gray-900">{{ artist.name }}</h2>
+                    </div>
+                    <div class="border-t border-gray-200">
+                        <dl>
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 w-60 h-60">
+                                    <img src="{{ artist.thumbnail }}" alt="{{ artist.name }}">
+                                </dd>
+                            </div>
+                            <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">Biography</dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                                    {{ artist.biography }}
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="px-4 py-4 sm:px-6">
+                        <a href="{{ path('app_artist_show', {'id': artist.id}) }}" class="text-[#F0C033] hover:text-yellow-800">show</a>
+                        <a href="{{ path('app_artist_edit', {'id': artist.id}) }}" class="text-[#F0C033] hover:text-yellow-800">edit</a>
+                    </div>
+                </div>
+            {% else %}
+                <div class="text-center py-4">No records found</div>
+            {% endfor %}
+        </div>
+
+        <a href="{{ path('app_artist_new') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Create new</a>
     </div>
 {% endblock %}

@@ -8,9 +8,9 @@
     <div class="w-full max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
         {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
             {{ form_widget(form) }}
-            <button type="submit" class="bg-[#F0C033] hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Create</button>
+            <button type="submit" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Create</button>
         {{ form_end(form) }}
     </div>
 
-    <a href="{{ path('app_album_index') }}" class="text-[#F0C033] hover:text-green-800">back to list</a>
+    <a href="{{ path('app_album_index') }}" class="text-[#F0C033] hover:text-yellow-800">back to list</a>
 {% endblock %}
