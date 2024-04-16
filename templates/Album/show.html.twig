@@ -17,13 +17,13 @@
             <div class="border-t border-gray-200">
                 <dl>
                     <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">Thumbnail</dt>
+                        <dt class="text-sm font-medium text-gray-500">Miniature</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 w-80 h-80">
                             <img src="{{ album.thumbnail }}" alt="{{ album.title }}">
                         </dd>
                     </div>
                     <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">Release Date</dt>
+                        <dt class="text-sm font-medium text-gray-500">Date de sortie</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                             {{ album.releasedate ? album.releasedate|date('d/m/Y') : '' }}
                         </dd>
@@ -36,19 +36,19 @@
                     </div>
                 </dl>
             </div>
-            <h2 class="text-2xl my-4">Musics</h2>
+            <h2 class="text-2xl my-4">Musique</h2>
             {% for music in album.music %}
                 <div class="px-4 py-5 sm:px-6 flex justify-between {% if loop.index is odd %}bg-gray-100{% endif %}">
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2 font-bold text-lg">{{ music.title }}</dd>
                     <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{{ music.getDurationString() }}</dd>
                 </div>
             {% else %}
-                <div class="text-center py-4">No music found for this album</div>
+                <div class="text-center py-4">Pas de musique trouvé pour cet album</div>
             {% endfor %}
         </div>
 
-        <a href="{{ path('app_album_index') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Back to list</a>
-        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Edit</a>
+        <a href="{{ path('app_album_index') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Retour a la liste</a>
+        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Modifier</a>
 
         {{ include('Album/_delete_form.html.twig') }}
     </div>

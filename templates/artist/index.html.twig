@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Artist index{% endblock %}
+{% block title %}Artiste{% endblock %}
 
 {% block body %}
     <div class="container mx-auto px-4">
-        <h1 class="text-4xl mb-4">Artist index</h1>
+        <h1 class="text-4xl mb-4">Artiste</h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {% for artist in artists %}
@@ -28,15 +28,15 @@
                         </dl>
                     </div>
                     <div class="px-4 py-4 sm:px-6">
-                        <a href="{{ path('app_artist_show', {'id': artist.id}) }}" class="text-[#F0C033] hover:text-yellow-800">show</a>
-                        <a href="{{ path('app_artist_edit', {'id': artist.id}) }}" class="text-[#F0C033] hover:text-yellow-800">edit</a>
+                        <a href="{{ path('app_artist_show', {'id': artist.id}) }}" class="text-[#F0C033] hover:text-yellow-800">Voir</a>
+                        <a href="{{ path('app_artist_edit', {'id': artist.id}) }}" class="text-[#F0C033] hover:text-yellow-800">Modifier</a>
                     </div>
                 </div>
             {% else %}
-                <div class="text-center py-4">No records found</div>
+                <div class="text-center py-4">Pas d'artiste trouvé</div>
             {% endfor %}
         </div>
 
-        <a href="{{ path('app_artist_new') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Create new</a>
+        <a href="{{ path('app_artist_new') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Crée nouveau</a>
     </div>
 {% endblock %}

@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Artist{% endblock %}
+{% block title %}Artiste{% endblock %}
 
 {% block body %}
     <div class="container mx-auto px-4">
-        <h1 class="text-4xl mb-4">Artist</h1>
+        <h1 class="text-4xl mb-4">Artiste</h1>
         <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
             <div class="px-4 py-5 sm:px-6">
                 <h2 class="text-lg leading-6 font-medium text-gray-900">{{ artist.name }}</h2>
@@ -38,7 +38,7 @@
                     </div>
                 {% endfor %}
             </div>
-            <h3 class="text-2xl my-4">Musics</h3>
+            <h3 class="text-2xl my-4">Musique</h3>
             {% for album in albums %}
                 {% for music in album.music %}
                     <div class="px-4 py-5 sm:px-6 flex justify-between {% if loop.index is odd %}bg-gray-100{% endif %}">

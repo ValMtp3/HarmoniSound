@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Album index{% endblock %}
+{% block title %}Album{% endblock %}
 
 {% block body %}
     <div class="container mx-auto px-4">
-        <h1 class="text-4xl mb-4">Album index</h1>
+        <h1 class="text-4xl mb-4">Album</h1>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {% for album in albums %}
@@ -20,7 +20,7 @@
                                 </dd>
                             </div>
                             <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                <dt class="text-sm font-medium text-gray-500">Release Date</dt>
+                                <dt class="text-sm font-medium text-gray-500">Date de sortie</dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
                                     {{ album.releasedate ? album.releasedate|date('d/m/Y') : '' }}
                                 </dd>
@@ -34,15 +34,15 @@
                         </dl>
                     </div>
                     <div class="px-4 py-4 sm:px-6">
-                        <a href="{{ path('app_album_show', {'id': album.id}) }}" class="text-[#F0C033] hover:text-yellow-800">show</a>
-                        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="text-[#F0C033] hover:text-yellow-800">edit</a>
+                        <a href="{{ path('app_album_show', {'id': album.id}) }}" class="text-[#F0C033] hover:text-yellow-800">Voir</a>
+                        <a href="{{ path('app_album_edit', {'id': album.id}) }}" class="text-[#F0C033] hover:text-yellow-800">Modifier</a>
                     </div>
                 </div>
             {% else %}
-                <div class="text-center py-4">No records found</div>
+                <div class="text-center py-4">Pas d'album trouvé</div>
             {% endfor %}
         </div>
 
-        <a href="{{ path('app_album_new') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Create new</a>
+        <a href="{{ path('app_album_new') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Crée nouveau</a>
     </div>
 {% endblock %}

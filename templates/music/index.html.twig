@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Music{% endblock %}
+{% block title %}Musique{% endblock %}
 
 {% block body %}
     <div class="container mx-auto px-4">
-        <h1 class="text-4xl mb-4">Music</h1>
+        <h1 class="text-4xl mb-4">Musique</h1>
 
         <table class="table-auto w-full mb-4">
             <thead>
                 <tr class="bg-[#F0C033] text-white">
                     <th class="px-4 py-2">Id</th>
-                    <th class="px-4 py-2">Title</th>
-                    <th class="px-4 py-2">Duration</th>
+                    <th class="px-4 py-2">Titre</th>
+                    <th class="px-4 py-2">Durée</th>
                     <th class="px-4 py-2">Album</th>
                 </tr>
             </thead>
@@ -23,18 +23,18 @@
                     <td class="border px-4 py-2">{{ music.getDurationString() }}</td>
                     <td class="border px-4 py-2">{{ music.album.title }}</td>
                     <td class="border px-4 py-2">
-                        <a href="{{ path('app_music_show', {'id': music.id}) }}" class="text-[#F0C033] hover:text-yellow-800">show</a>
-                        <a href="{{ path('app_music_edit', {'id': music.id}) }}" class="text-[#F0C033] hover:text-yellow-800">edit</a>
+                        <a href="{{ path('app_music_show', {'id': music.id}) }}" class="text-[#F0C033] hover:text-yellow-800">Voir</a>
+                        <a href="{{ path('app_music_edit', {'id': music.id}) }}" class="text-[#F0C033] hover:text-yellow-800">Modifier</a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="5" class="text-center py-4">No records found</td>
+                    <td colspan="5" class="text-center py-4">Pas de musique trouvée</td>
                 </tr>
             {% endfor %}
             </tbody>
         </table>
 
-        <a href="{{ path('app_music_new') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Create new</a>
+        <a href="{{ path('app_music_new') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Crée nouveau</a>
     </div>
 {% endblock %}

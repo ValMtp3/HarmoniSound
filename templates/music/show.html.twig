@@ -1,16 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Music index{% endblock %}
+{% block title %}Musique{% endblock %}
 
 {% block body %}
     <div class="container mx-auto px-4">
-        <h1 class="text-4xl mb-4">Music index</h1>
+        <h1 class="text-4xl mb-4">Musique</h1>
 
         {% if music %}
             <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4">
                 <div class="px-4 py-5 sm:px-6">
                     <h2 class="text-lg leading-6 font-medium text-gray-900">{{ music.title }}</h2>
-                    <td class="border px-4 py-2">{{ music.durationString() }}</td>                </div>
+                    <td class="border px-4 py-2">{{ music.durationString() }}</td>
+                </div>
                 <div class="border-t border-gray-200">
                     <dl>
                         <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -19,20 +20,15 @@
                                 {{ music.album.title }}
                             </dd>
                         </div>
-                        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                            <dt class="text-sm font-medium text-gray-500">Actions</dt>
-                            <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                                <a href="{{ path('app_music_show', {'id': music.id}) }}" class="text-[#F0C033] hover:text-yellow-800">show</a>
-                                <a href="{{ path('app_music_edit', {'id': music.id}) }}" class="text-[#F0C033] hover:text-yellow-800">edit</a>
-                            </dd>
-                        </div>
                     </dl>
                 </div>
             </div>
         {% else %}
-            <p>No records found</p>
+            <p>Pas de musique trouvée</p>
         {% endif %}
 
-        <a href="{{ path('app_music_new') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Create new</a>
+        <a href="{{ path('app_music_new') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Crée nouveau</a>
+        <a href="{{ path('app_music_edit', {'id': music.id}) }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Modifier</a>
+        <a href="{{ path('app_music_index') }}" class="bg-[#F0C033] hover:bg-[#D8A948] text-white font-bold py-2 px-4 rounded">Retour à la liste</a>
     </div>
 {% endblock %}
