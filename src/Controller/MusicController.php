@@ -6,6 +6,7 @@ use App\Entity\Music;
 use App\Form\MusicType;
 use App\Repository\AlbumRepository;
 use App\Repository\MusicRepository;
+use App\Repository\ArtistRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -74,6 +75,7 @@ class MusicController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_music_delete', methods: ['POST'])]
+
     public function delete(Request $request, Music $music, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$music->getId(), $request->request->get('_token'))) {
@@ -83,4 +85,35 @@ class MusicController extends AbstractController
 
         return $this->redirectToRoute('app_music_index', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('/search/music', name: 'app_music_search', methods: ['GET'])]
+    public function search(Request $request, MusicRepository $musicRepository, AlbumRepository $albumRepository, ArtistRepository $artistRepository): Response
+    {
+        $query = strtolower($request->query->get('query'));
+
+        $musicResults = $musicRepository->createQueryBuilder('m')
+            ->where('LOWER(m.title) LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            ->getQuery()
+            ->getResult();
+
+        $albumResults = $albumRepository->createQueryBuilder('a')
+            ->where('LOWER(a.title) LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            ->getQuery()
+            ->getResult();
+
+        $artistResults = $artistRepository->createQueryBuilder('ar')
+            ->where('LOWER(ar.name) LIKE :query')
+            ->setParameter('query', '%'.$query.'%')
+            ->getQuery()
+            ->getResult();
+
+        return $this->render('music/search.html.twig', [
+            'music_results' => $musicResults,
+            'album_results' => $albumResults,
+            'artist_results' => $artistResults,
+            'query' => $query,
+        ]);
+    }
+
 }

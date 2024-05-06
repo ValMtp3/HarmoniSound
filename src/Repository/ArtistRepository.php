@@ -20,7 +20,14 @@ class ArtistRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Artist::class);
     }
-
+public function search($query)
+{
+    return $this->createQueryBuilder('a')
+        ->where('a.name LIKE :query')
+        ->setParameter('query', '%'.$query.'%')
+        ->getQuery()
+        ->getResult();
+}
 //    /**
 //     * @return Artist[] Returns an array of Artist objects
 //     */
