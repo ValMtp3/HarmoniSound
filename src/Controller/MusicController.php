@@ -59,6 +59,8 @@ class MusicController extends AbstractController
     #[Route('/{id}/edit', name: 'app_music_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Music $music, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $form = $this->createForm(MusicType::class, $music);
         $form->handleRequest($request);
 
@@ -75,16 +77,16 @@ class MusicController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_music_delete', methods: ['POST'])]
-
     public function delete(Request $request, Music $music, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$music->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $music->getId(), $request->request->get('_token'))) {
             $entityManager->remove($music);
             $entityManager->flush();
         }
 
         return $this->redirectToRoute('app_music_index', [], Response::HTTP_SEE_OTHER);
     }
+
     #[Route('/search/music', name: 'app_music_search', methods: ['GET'])]
     public function search(Request $request, MusicRepository $musicRepository, AlbumRepository $albumRepository, ArtistRepository $artistRepository): Response
     {
@@ -92,19 +94,19 @@ class MusicController extends AbstractController
 
         $musicResults = $musicRepository->createQueryBuilder('m')
             ->where('LOWER(m.title) LIKE :query')
-            ->setParameter('query', '%'.$query.'%')
+            ->setParameter('query', '%' . $query . '%')
             ->getQuery()
             ->getResult();
 
         $albumResults = $albumRepository->createQueryBuilder('a')
             ->where('LOWER(a.title) LIKE :query')
-            ->setParameter('query', '%'.$query.'%')
+            ->setParameter('query', '%' . $query . '%')
             ->getQuery()
             ->getResult();
 
         $artistResults = $artistRepository->createQueryBuilder('ar')
             ->where('LOWER(ar.name) LIKE :query')
-            ->setParameter('query', '%'.$query.'%')
+            ->setParameter('query', '%' . $query . '%')
             ->getQuery()
             ->getResult();
 

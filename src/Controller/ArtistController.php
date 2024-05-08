@@ -61,6 +61,8 @@ class ArtistController extends AbstractController
     #[Route('/{id}/edit', name: 'app_artist_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Artist $artist, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $form = $this->createForm(ArtistType::class, $artist);
         $form->handleRequest($request);
 

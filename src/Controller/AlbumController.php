@@ -58,6 +58,8 @@ class AlbumController extends AbstractController
     #[Route('/{id}/edit', name: 'app_album_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Album $album, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $form = $this->createForm(AlbumType::class, $album);
         $form->handleRequest($request);
 
