@@ -1,0 +1,11 @@
+fos_rest:
+  body_listener: true
+  format_listener: true
+  view:
+    view_response_listener: 'force'
+    formats:
+      json: true
+    mime_types:
+      json: ['application/json', 'application/problem+json']
+      template_data:
+        envelope: false
