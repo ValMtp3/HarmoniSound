@@ -17,7 +17,7 @@ class AlbumController extends AbstractController
     #[Route('/', name: 'app_album_index', methods: ['GET'])]
     public function index(AlbumRepository $albumRepository): Response
     {
-        return $this->render('album/index.html.twig', [
+        return $this->render('Album/index.html.twig', [
             'albums' => $albumRepository->findAll(),
         ]);
     }
@@ -36,7 +36,7 @@ class AlbumController extends AbstractController
             return $this->redirectToRoute('app_album_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('album/new.html.twig', [
+        return $this->render('Album/new.html.twig', [
             'album' => $album,
             'form' => $form,
         ]);
@@ -48,7 +48,7 @@ class AlbumController extends AbstractController
         $artist = $album->getArtist();
         $musics = $album->getMusic();
 
-        return $this->render('album/show.html.twig', [
+        return $this->render('Album/show.html.twig', [
             'album' => $album,
             'artist' => $artist,
             'musics' => $musics,
@@ -69,7 +69,7 @@ class AlbumController extends AbstractController
             return $this->redirectToRoute('app_album_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('album/edit.html.twig', [
+        return $this->render('Album/edit.html.twig', [
             'album' => $album,
             'form' => $form,
         ]);
