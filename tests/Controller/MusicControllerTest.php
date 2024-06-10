@@ -21,12 +21,11 @@ class MusicControllerTest extends WebTestCase
         // Vérifie que la réponse est réussie
         $this->assertResponseIsSuccessful();
 
+        // Vérifie que la réponse contient du HTML
+        $this->assertResponseHeaderSame('Content-Type', 'text/html; charset=UTF-8');
+
         // Vérifie que le texte 'Musique' est présent dans le h1 de la page
         $this->assertSelectorTextContains('h1', 'Musique');
-
-        // Restaure les gestionnaires d'erreurs et d'exceptions par défaut
-        restore_error_handler();
-        restore_exception_handler();
     }
 
     // Teste la page de création de nouvelle musique
@@ -41,12 +40,11 @@ class MusicControllerTest extends WebTestCase
         // Vérifie que la réponse est réussie
         $this->assertResponseIsSuccessful();
 
+        // Vérifie que la réponse contient du HTML
+        $this->assertResponseHeaderSame('Content-Type', 'text/html; charset=UTF-8');
+
         // Vérifie que le texte 'Nouvelle Musique' est présent dans le h1 de la page
         $this->assertSelectorTextContains('h1', 'Nouvelle Musique');
-
-        // Restaure les gestionnaires d'erreurs et d'exceptions par défaut
-        restore_error_handler();
-        restore_exception_handler();
     }
 
     // Teste la page de visualisation d'une musique
@@ -61,12 +59,11 @@ class MusicControllerTest extends WebTestCase
         // Vérifie que la réponse est réussie
         $this->assertResponseIsSuccessful();
 
+        // Vérifie que la réponse contient du HTML
+        $this->assertResponseHeaderSame('Content-Type', 'text/html; charset=UTF-8');
+
         // Vérifie que le texte 'Musique' est présent dans le h1 de la page
         $this->assertSelectorTextContains('h1', 'Musique');
-
-        // Restaure les gestionnaires d'erreurs et d'exceptions par défaut
-        restore_error_handler();
-        restore_exception_handler();
     }
 
     // Teste la page d'édition d'une musique
@@ -83,9 +80,7 @@ class MusicControllerTest extends WebTestCase
         $testUser = $userRepository->findOneByEmail('admin@admin.fr');
 
         // Vérifie que l'utilisateur existe
-        if (!$testUser) {
-            $this->fail('User not found');
-        }
+        $this->assertNotNull($testUser, 'User not found');
 
         // Authentifie l'utilisateur
         $client->loginUser($testUser);
@@ -95,9 +90,7 @@ class MusicControllerTest extends WebTestCase
         $music = $musicRepository->find(1);
 
         // Si la musique n'existe pas, le test échoue
-        if (!$music) {
-            $this->fail('Music not found');
-        }
+        $this->assertNotNull($music, 'Music not found');
 
         // Fait une requête GET sur la page d'édition de la musique
         $crawler = $client->request('GET', '/music/1/edit');
@@ -105,11 +98,10 @@ class MusicControllerTest extends WebTestCase
         // Vérifie que la réponse est réussie
         $this->assertResponseIsSuccessful();
 
+        // Vérifie que la réponse contient du HTML
+        $this->assertResponseHeaderSame('Content-Type', 'text/html; charset=UTF-8');
+
         // Vérifie que le texte 'Modifier Music' est présent dans le h1 de la page
         $this->assertSelectorTextContains('h1', 'Modifier Music');
-
-        // Restaure les gestionnaires d'erreurs et d'exceptions par défaut
-        restore_error_handler();
-        restore_exception_handler();
     }
 }

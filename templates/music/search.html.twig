@@ -14,13 +14,15 @@
                 <h2 class="text-xl font-semibold mb-2" >Musiques</h2 >
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" >
                     {% for music in music_results %}
-                        <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4" >
+                        <a href="{{ path('app_music_show', {id: music.id}) }}" class="bg-white shadow overflow-hidden sm:rounded-lg mb-4 block" >
                             <div class="px-4 py-5 sm:px-6" >
-                                <h2 class="text-lg leading-6 font-medium text-gray-900" >{{ music.title }}</h2 >
+                                <h2 class="text-lg leading-6 font-medium text-gray-900" >
+                                    {{ music.title }}
+                                </h2 >
                                 <p class="text-sm text-gray-500" >{{ music.getDurationString() }}</p >
                                 <p class="text-sm text-gray-500" >{{ music.album }}</p >
                             </div >
-                        </div >
+                        </a>
                     {% endfor %}
                 </div >
             {% endif %}
@@ -29,15 +31,17 @@
                 <h2 class="text-xl font-semibold mb-2 mt-4" >Albums</h2 >
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" >
                     {% for album in album_results %}
-                        <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4" >
+                        <a href="{{ path('app_album_show', {id: album.id}) }}" class="bg-white shadow overflow-hidden sm:rounded-lg mb-4 block" >
                             <div class="px-4 py-5 sm:px-6" >
-                                <h2 class="text-lg leading-6 font-medium text-gray-900" >{{ album.title }}</h2 >
+                                <h2 class="text-lg leading-6 font-medium text-gray-900" >
+                                    {{ album.title }}
+                                </h2 >
                                 <img class="w-60 h-60" src="{{ album.thumbnail }}" alt="{{ album.title }}" >
                                 <p class="text-sm text-gray-500" >Date de sortie
                                                                   : {{ album.releasedate ? album.releasedate|date('d/m/Y') : '' }}</p >
                                 <p class="text-sm text-gray-500" >{{ album.typeName }}</p >
                             </div >
-                        </div >
+                        </a>
                     {% endfor %}
                 </div >
             {% endif %}
@@ -46,12 +50,14 @@
                 <h2 class="text-xl font-semibold mb-2 mt-4" >Artistes</h2 >
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" >
                     {% for artist in artist_results %}
-                        <div class="bg-white shadow overflow-hidden sm:rounded-lg mb-4" >
+                        <a href="{{ path('app_artist_show', {id: artist.id}) }}" class="bg-white shadow overflow-hidden sm:rounded-lg mb-4 block" >
                             <div class="px-4 py-5 sm:px-6" >
-                                <h2 class="text-lg leading-6 font-medium text-gray-900" >{{ artist.name }}</h2 >
+                                <h2 class="text-lg leading-6 font-medium text-gray-900" >
+                                    {{ artist.name }}
+                                </h2 >
                                 <img class="w-60 h-60" src="{{ artist.thumbnail }}" alt="{{ artist.name }}" >
                             </div >
-                        </div >
+                        </a>
                     {% endfor %}
                 </div >
             {% endif %}
